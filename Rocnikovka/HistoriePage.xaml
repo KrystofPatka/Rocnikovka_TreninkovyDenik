@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Rocnikovka.HistoriePage"
+             Title="Historie a přehled tréninků">
+
+    <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <Label Text="Kompletní historie výkonů" 
+                   FontSize="22" 
+                   FontAttributes="Bold" 
+                   HorizontalOptions="Center" 
+                   Margin="0,0,0,10"/>
+
+            <CollectionView x:Name="GridHistorie">
+                <CollectionView.Header>
+                    <Frame BackgroundColor="#2c3e50" Padding="10" CornerRadius="0" Margin="0,0,0,2">
+                        <Grid ColumnDefinitions="80,100,80,60,60,60">
+                            <Label Grid.Column="0" Text="Datum" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center"/>
+                            <Label Grid.Column="1" Text="Aktivita / Cvik" FontAttributes="Bold" TextColor="White"/>
+                            <Label Grid.Column="2" Text="Sport" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center"/>
+                            <Label Grid.Column="3" Text="Váha" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center"/>
+                            <Label Grid.Column="4" Text="Opak." FontAttributes="Bold" TextColor="White" HorizontalOptions="Center"/>
+                            <Label Grid.Column="5" Text="Výkon" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center"/>
+                        </Grid>
+                    </Frame>
+                </CollectionView.Header>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="10" CornerRadius="0" Margin="0,1" BorderColor="#E0E0E0">
+                            <Grid ColumnDefinitions="80,100,80,60,60,60">
+                                <Label Grid.Column="0" Text="{Binding Datum, StringFormat='{0:d.M.yyyy}'}" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                <Label Grid.Column="1" Text="{Binding Nazev}" FontAttributes="Bold" VerticalOptions="Center"/>
+                                <Label Grid.Column="2" Text="{Binding Typ}" VerticalOptions="Center" HorizontalOptions="Center" FontSize="12" TextColor="Gray"/>
+
+                                <Label Grid.Column="3" Text="{Binding Vaha}" VerticalOptions="Center" HorizontalOptions="Center"/>
+                                <Label Grid.Column="4" Text="{Binding Opakovani}" VerticalOptions="Center" HorizontalOptions="Center"/>
+
+                                <HorizontalStackLayout Grid.Column="5" HorizontalOptions="Center" VerticalOptions="Center">
+                                    <Label Text="{Binding Vzdalenost}" FontAttributes="Bold"/>
+                                    <Label Text="km" FontSize="10" IsVisible="{Binding Vzdalenost, Converter={StaticResource StringToBoolConverter}}"/>
+                                    <Label Text="{Binding Cas}" FontAttributes="Bold" Margin="5,0,0,0"/>
+                                    <Label Text="m" FontSize="10"/>
+                                </HorizontalStackLayout>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

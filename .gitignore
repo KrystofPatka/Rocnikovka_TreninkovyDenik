@@ -1,0 +1,10 @@
+cat << 'EOF' > .gitignore
+[Bb]in/
+[Oo]bj/
+.vs/
+*.user
+*.suo
+*.zip
+*.rar
+*.pdb
+EOF

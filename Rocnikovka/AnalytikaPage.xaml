@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:micro="clr-namespace:Microcharts.Maui;assembly=Microcharts.Maui"
+             x:Class="Rocnikovka.AnalytikaPage"
+             BackgroundColor="#F5F6FA"
+             Title="Pokročilá analytika výkonu">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="20">
+
+            <Frame BackgroundColor="#8B5CF6" CornerRadius="12" Padding="20" HasShadow="True">
+                <VerticalStackLayout Spacing="5" HorizontalOptions="Center">
+                    <Label Text="ANALYTICKÉ CENTRUM" FontSize="24" FontAttributes="Bold" TextColor="White" HorizontalOptions="Center" CharacterSpacing="1"/>
+                    <Label Text="Vícedimenzionální vyhodnocení sportovních dat" FontSize="12" TextColor="#E9D5FF" HorizontalOptions="Center"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame BackgroundColor="White" CornerRadius="12" Padding="15" BorderColor="#E2E8F0">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Zvolte aktivitu / cvik pro analýzu:" FontAttributes="Bold" TextColor="#1E293B"/>
+                    <Picker x:Name="PickerCviky" Title="Vybrat z databáze..." SelectedIndexChanged="OnCvikChanged" BackgroundColor="#F8FAFC"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            <VerticalStackLayout x:Name="SekceGrafu" IsVisible="false" Spacing="20">
+
+                <Label x:Name="LblNazevAktivity" FontSize="20" FontAttributes="Bold" HorizontalOptions="Center" TextColor="#1E293B"/>
+
+                <Frame BackgroundColor="White" CornerRadius="12" Padding="15" BorderColor="#E2E8F0">
+                    <VerticalStackLayout Spacing="10">
+                        <Label x:Name="LblGraf1Titul" FontSize="14" FontAttributes="Bold" TextColor="#475569"/>
+                        <Frame BorderColor="#F1F5F9" BackgroundColor="#F8FAFC" Padding="5" HeightRequest="220">
+                            <micro:ChartView x:Name="Graf1" HeightRequest="210"/>
+                        </Frame>
+                    </VerticalStackLayout>
+                </Frame>
+
+                <Frame BackgroundColor="White" CornerRadius="12" Padding="15" BorderColor="#E2E8F0">
+                    <VerticalStackLayout Spacing="10">
+                        <Label x:Name="LblGraf2Titul" FontSize="14" FontAttributes="Bold" TextColor="#475569"/>
+                        <Frame BorderColor="#F1F5F9" BackgroundColor="#F8FAFC" Padding="5" HeightRequest="220">
+                            <micro:ChartView x:Name="Graf2" HeightRequest="210"/>
+                        </Frame>
+                    </VerticalStackLayout>
+                </Frame>
+
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

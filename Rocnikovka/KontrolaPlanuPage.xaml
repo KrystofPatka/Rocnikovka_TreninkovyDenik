@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Rocnikovka.KontrolaPlanuPage"
+             BackgroundColor="#0B0F19"
+             Title="Audit splnění cílů">
+
+    <Grid RowDefinitions="*, Auto" Padding="20">
+
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout Spacing="22">
+
+                <Border StrokeThickness="1" Stroke="#059669" StrokeShape="RoundRectangle 20">
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="#064E3B" Offset="0.0"/>
+                            <GradientStop Color="#022C22" Offset="1.0"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                    <VerticalStackLayout Padding="22" Spacing="6" HorizontalOptions="Center">
+                        <Label Text="AUDIT TRÉNINGOVÝCH CÍLŮ" FontSize="20" FontAttributes="Bold" TextColor="#F8FAFC" HorizontalOptions="Center" CharacterSpacing="1.5"/>
+                        <Label x:Name="LblAktualniLevel" Text="Aktuální úroveň plánu: Level 1" FontSize="13" TextColor="#34D399" HorizontalOptions="Center" FontAttributes="Bold"/>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Label Text="Dnešní bojové úkoly:" FontAttributes="Bold" FontSize="15" TextColor="#64748B" Margin="4,0"/>
+
+                <CollectionView x:Name="SeznamVyhodnoceni">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border StrokeThickness="1" Stroke="#334155" StrokeShape="RoundRectangle 18" Margin="0,6" BackgroundColor="#1E293B">
+                                <VerticalStackLayout Padding="18" Spacing="14">
+
+                                    <Grid ColumnDefinitions="*, Auto">
+                                        <Label Grid.Column="0" Text="{Binding NazevAktivity}" FontAttributes="Bold" FontSize="17" TextColor="#F8FAFC"/>
+                                        <Border BackgroundColor="#0F172A" StrokeShape="RoundRectangle 10" Padding="8,4" StrokeThickness="0" Grid.Column="1">
+                                            <Label Text="{Binding ProcentaSplneno, StringFormat='{0}%'}" FontAttributes="Bold" TextColor="{Binding BarvaIndikatoru}" FontSize="13"/>
+                                        </Border>
+                                    </Grid>
+
+                                    <BoxView HeightRequest="6" Color="{Binding BarvaIndikatoru}" CornerRadius="3"/>
+
+                                    <Grid ColumnDefinitions="*, *">
+                                        <VerticalStackLayout Grid.Column="0" Spacing="2">
+                                            <Label Text="STANOVENÝ CÍL" FontSize="10" TextColor="#64748B" FontAttributes="Bold"/>
+                                            <Label Text="{Binding PlanovanyCil}" FontSize="13" TextColor="#38BDF8" FontAttributes="Bold"/>
+                                        </VerticalStackLayout>
+                                        <VerticalStackLayout Grid.Column="1" Spacing="2" HorizontalOptions="End">
+                                            <Label Text="REÁLNÝ VÝKON" FontSize="10" TextColor="#64748B" FontAttributes="Bold" HorizontalOptions="End"/>
+                                            <Label Text="{Binding RealnyVykon}" FontSize="13" TextColor="#F8FAFC" FontAttributes="Bold" HorizontalOptions="End"/>
+                                        </VerticalStackLayout>
+                                    </Grid>
+
+                                </VerticalStackLayout>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <Border x:Name="FrameProgres" Grid.Row="1" StrokeThickness="2" Stroke="#10B981" StrokeShape="RoundRectangle 20" Margin="0,16,0,0" IsVisible="False">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="#064E3B" Offset="0.0"/>
+                    <GradientStop Color="#022C22" Offset="1.0"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <VerticalStackLayout Padding="20" Spacing="12">
+                <Label Text="⚡ VŠECHNY CÍLE SPLNĚNY NA 100%!" FontAttributes="Bold" FontSize="14" TextColor="#34D399" HorizontalOptions="Center" CharacterSpacing="1"/>
+                <Button Text="NAČÍST VYŠŠÍ LEVEL PLÁNU" Clicked="OnZvysitObtiznostClicked" BackgroundColor="#10B981" TextColor="White" FontAttributes="Bold" FontSize="14" CornerRadius="12" HeightRequest="52"/>
+            </VerticalStackLayout>
+        </Border>
+
+    </Grid>
+</ContentPage>

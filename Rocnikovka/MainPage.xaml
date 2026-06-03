@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Rocnikovka.MainPage"
+             BackgroundColor="#0B0F19"
+             Title="FitAnalytics Pro">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="24">
+
+            <Border StrokeThickness="1" Stroke="#1E293B" StrokeShape="RoundRectangle 20">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#1E293B" Offset="0.0"/>
+                        <GradientStop Color="#0F172A" Offset="1.0"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <VerticalStackLayout Padding="24" Spacing="6" HorizontalOptions="Center">
+                    <Label Text="FITANALYTICS PRO" FontSize="28" FontAttributes="Bold" TextColor="#38BDF8" HorizontalOptions="Center" CharacterSpacing="3"/>
+                    <Label Text="🚀 NEXT-GEN TRAINING EVOLUTION" FontSize="11" FontAttributes="Bold" TextColor="#0EA5E9" HorizontalOptions="Center" CharacterSpacing="1"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border StrokeThickness="2" Stroke="#2563EB" StrokeShape="RoundRectangle 20">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#1E293B" Offset="0.0"/>
+                        <GradientStop Color="#111827" Offset="1.0"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <VerticalStackLayout Padding="20" Spacing="14">
+                    <HorizontalStackLayout Spacing="12" VerticalOptions="Center">
+                        <Label Text="📅" FontSize="20" VerticalOptions="Center"/>
+                        <Label Text="Aktivní tréninkový program" FontSize="17" FontAttributes="Bold" TextColor="#F8FAFC" VerticalOptions="Center"/>
+                    </HorizontalStackLayout>
+
+                    <Picker x:Name="PickerPlanu" Title="Zvolte svůj plán" TitleColor="#475569" TextColor="#F8FAFC" BackgroundColor="#090D16" FontAttributes="Bold" HorizontalOptions="FillAndExpand" SelectedIndexChanged="OnPlanChanged"/>
+
+                    <Border BackgroundColor="#090D16" StrokeThickness="1" Stroke="#334155" StrokeShape="RoundRectangle 14">
+                        <Label x:Name="LblPredepsanyPlanText" Padding="15" Text="Načítám instrukce plánu..." TextColor="#38BDF8" FontSize="14" LineHeight="1.5" FontAttributes="Italic"/>
+                    </Border>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border x:Name="FrameDoporuceni" StrokeThickness="1" Stroke="#0284C7" StrokeShape="RoundRectangle 20" IsVisible="False">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                        <GradientStop Color="#0369A1" Offset="0.0"/>
+                        <GradientStop Color="#075985" Offset="1.0"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Grid ColumnDefinitions="Auto, *" Padding="16">
+                    <Label Grid.Column="0" Text="🤖" FontSize="24" VerticalOptions="Center" Margin="5,0,15,0"/>
+                    <VerticalStackLayout Grid.Column="1" Spacing="4" VerticalOptions="Center">
+                        <Label Text="AI ASISTENT TRÉNERA" FontSize="11" FontAttributes="Bold" TextColor="#7DD3FC" CharacterSpacing="1.5"/>
+                        <Label x:Name="LblDoporuceniText" Text="Zde se zobrazí doporučení na základě historie." TextColor="#F0F9FF" FontSize="14" LineHeight="1.4"/>
+                    </VerticalStackLayout>
+                </Grid>
+            </Border>
+
+            <Border StrokeThickness="1" Stroke="#334155" StrokeShape="RoundRectangle 20">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                        <GradientStop Color="#1E293B" Offset="0.0"/>
+                        <GradientStop Color="#111827" Offset="1.0"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <VerticalStackLayout Padding="20" Spacing="16">
+                    <HorizontalStackLayout Spacing="12" VerticalOptions="Center">
+                        <Label Text="💪" FontSize="20" VerticalOptions="Center"/>
+                        <Label Text="Zápis reálného výkonu" FontSize="17" FontAttributes="Bold" TextColor="#F8FAFC" VerticalOptions="Center"/>
+                    </HorizontalStackLayout>
+
+                    <Grid ColumnDefinitions="*, *" ColumnSpacing="14">
+                        <VerticalStackLayout Grid.Column="0" Spacing="6">
+                            <Label Text="Typ sportu" FontSize="12" FontAttributes="Bold" TextColor="#64748B" Margin="2,0"/>
+                            <Picker x:Name="TypSportu" Title="Zvolit sport" TitleColor="#475569" TextColor="#F8FAFC" BackgroundColor="#090D16" SelectedIndexChanged="OnSportChanged"/>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="1" Spacing="6" x:Name="SekceNazvuCviku" IsVisible="False">
+                            <Label Text="Název cviku / Trasy" FontSize="12" FontAttributes="Bold" TextColor="#64748B" Margin="2,0"/>
+                            <Picker x:Name="PickerUlozenychCviku" Title="Z historie" TitleColor="#475569" TextColor="#F8FAFC" BackgroundColor="#090D16" SelectedIndexChanged="OnUlozenyCvikChanged" Margin="0,0,0,6"/>
+                            <Entry x:Name="NovyCvikEntry" Placeholder="Nebo nový..." PlaceholderColor="#475569" TextColor="#F8FAFC" BackgroundColor="#090D16"/>
+                        </VerticalStackLayout>
+                    </Grid>
+
+                    <VerticalStackLayout x:Name="SilovaSekce" IsVisible="False" Spacing="12">
+                        <Grid ColumnDefinitions="*, *, *" ColumnSpacing="12">
+                            <VerticalStackLayout Grid.Column="0" Spacing="4">
+                                <Label Text="Váha (kg)" FontSize="11" TextColor="#64748B" HorizontalOptions="Center"/>
+                                <Entry x:Name="Vaha" Keyboard="Numeric" TextColor="#F8FAFC" BackgroundColor="#090D16" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+                            </VerticalStackLayout>
+                            <VerticalStackLayout Grid.Column="1" Spacing="4">
+                                <Label Text="Série" FontSize="11" TextColor="#64748B" HorizontalOptions="Center"/>
+                                <Entry x:Name="Serie" Keyboard="Numeric" TextColor="#F8FAFC" BackgroundColor="#090D16" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+                            </VerticalStackLayout>
+                            <VerticalStackLayout Grid.Column="2" Spacing="4">
+                                <Label Text="Opakování" FontSize="11" TextColor="#64748B" HorizontalOptions="Center"/>
+                                <Entry x:Name="Opakovani" Keyboard="Numeric" TextColor="#F8FAFC" BackgroundColor="#090D16" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+                            </VerticalStackLayout>
+                        </Grid>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout x:Name="KardioSekce" IsVisible="False" Spacing="12">
+                        <Grid ColumnDefinitions="*, *" ColumnSpacing="12">
+                            <VerticalStackLayout Grid.Column="0" Spacing="4">
+                                <Label Text="Vzdálenost (km)" FontSize="11" TextColor="#64748B" HorizontalOptions="Center"/>
+                                <Entry x:Name="Vzdalenost" Keyboard="Numeric" TextColor="#F8FAFC" BackgroundColor="#090D16" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+                            </VerticalStackLayout>
+                            <VerticalStackLayout Grid.Column="1" Spacing="4">
+                                <Label Text="Celkový čas (min)" FontSize="11" TextColor="#64748B" HorizontalOptions="Center"/>
+                                <Entry x:Name="Cas" Keyboard="Numeric" TextColor="#F8FAFC" BackgroundColor="#090D16" HorizontalTextAlignment="Center" FontAttributes="Bold"/>
+                            </VerticalStackLayout>
+                        </Grid>
+                    </VerticalStackLayout>
+
+                    <Button Text="ULOŽIT SKUTEČNÝ VÝKON" Clicked="OnAddClicked" BackgroundColor="#10B981" TextColor="White" FontAttributes="Bold" FontSize="14" CornerRadius="14" HeightRequest="52" Margin="0,8,0,0"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border BackgroundColor="#1E293B" StrokeThickness="1" Stroke="#334155" StrokeShape="RoundRectangle 20">
+                <Grid ColumnDefinitions="*, *, *" ColumnSpacing="12" Padding="14">
+                    <Button Grid.Column="0" Text="📋 Audit" Clicked="OtevriKontroluPlanu" BackgroundColor="#2563EB" TextColor="White" FontAttributes="Bold" FontSize="13" CornerRadius="12" HeightRequest="48"/>
+                    <Button Grid.Column="1" Text="📊 Grafy" Clicked="OtevriAnalytiku" BackgroundColor="#7C3AED" TextColor="White" FontAttributes="Bold" FontSize="13" CornerRadius="12" HeightRequest="48"/>
+                    <Button Grid.Column="2" Text="🕒 Historie" Clicked="OtevriHistorii" BackgroundColor="#475569" TextColor="White" FontAttributes="Bold" FontSize="13" CornerRadius="12" HeightRequest="48"/>
+                </Grid>
+            </Border>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
